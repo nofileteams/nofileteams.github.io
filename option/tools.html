@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NOFILE Tools</title>
+<link rel="icon" href="icon.png">
+<style>
+  body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+
+  .neon-text {
+    color: #00aaff;
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 40px;
+    text-shadow:
+      0 0 10px #00aaff,
+      0 0 20px #00aaff,
+      0 0 40px #00aaff,
+      0 0 80px #0088dd,
+      0 0 120px #0066bb;
+  }
+
+  .tool-button {
+    display: block;
+    width: 300px;
+    margin: 40px auto;
+    padding: 15px 20px;
+    background-color: #000000;
+    color: #00aaff;
+    border: 3px solid #00aaff;
+    border-radius: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    box-shadow:
+      0 0 10px #00aaff,
+      0 0 20px #00aaff,
+      0 0 40px #0088dd,
+      0 0 60px #0066bb;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .tool-button:hover {
+    background-color: #001122;
+    box-shadow:
+      0 0 15px #00ccff,
+      0 0 30px #00ccff,
+      0 0 60px #0099dd,
+      0 0 90px #0077bb;
+  }
+
+  .popup-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+  }
+
+  .popup-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: #000000;
+    border: 3px solid #00aaff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow:
+      0 0 15px #00aaff,
+      0 0 30px #00aaff,
+      0 0 60px #0088dd;
+    color: #00aaff;
+  }
+
+  .popup-close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    color: #00aaff;
+    text-shadow: 0 0 10px #00aaff;
+  }
+
+  .popup-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .popup-desc {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  .download-btn {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    padding: 12px;
+    text-align: center;
+    background: #000000;
+    border: 3px solid #00aaff;
+    border-radius: 15px;
+    color: #00aaff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow:
+      0 0 10px #00aaff,
+      0 0 20px #00aaff;
+    transition: 0.3s;
+  }
+
+  .download-btn:hover {
+    background: #001122;
+    box-shadow:
+      0 0 15px #00ccff,
+      0 0 30px #00ccff;
+  }
+</style>
+</head>
+<body>
+
+<div class="neon-text">NOFILE Tools</div>
+
+<!-- Button -->
+<div class="tool-button" onclick="openPopup('Ascii Art generator', 'This converts a PNG image file into ASCII art. This is by hayato807.', 'https://www.mediafire.com/file/53v2zislwqadjt3/Ascii_Art_generator.zip/file')">
+  Ascii Art generator
+</div>
+
+<div class="tool-button" onclick="openPopup('Chat-X', 'This is something you can chat with. To be honest, I don\'t know what use this work is.', 'https://drive.google.com/file/d/1Zx9oWk2BsictBQFOgxPN-S8elJvu28Mn/view?usp=drive_link')">
+  Chat-X
+</div>
+
+<div class="tool-button" onclick="openPopup('NOFILE-AI', 'This is a crappy, not-so-smart AI created by NOFILE. Well, if you\'re interested, go ahead and try it.', 'https://drive.google.com/file/d/1VghSRV_MHbUTN3rMlO1q6ulfoqO027Ne/view?usp=drive_link')">
+  NOFILE-AI
+</div>
+
+<div class="tool-button" onclick="openPopup('NOFILE-Home', 'NOFILE Home', 'https://nofileteams-coder.github.io/NOFILE-Home/')">
+  NOFILE-Home
+</div>
+
+<div class="tool-button" onclick="openPopup('Python executer', 'BETA', 'https://drive.google.com/file/d/1ZeudGupidcExDV_Qzlj0CC4g-bwQkpCq/view?usp=drive_link')">
+  Python executer
+</div>
+
+<!-- Window -->
+<div class="popup-bg" id="popup">
+  <div class="popup-window">
+    <div class="popup-close" onclick="closePopup()">×</div>
+    <div class="popup-title" id="popup-title"></div>
+    <div class="popup-desc" id="popup-desc"></div>
+    <a id="popup-link" class="download-btn" target="_blank">Download</a>
+  </div>
+</div>
+
+<script>
+function openPopup(title, desc, link) {
+  document.getElementById("popup-title").textContent = title;
+  document.getElementById("popup-desc").textContent = desc;
+  document.getElementById("popup-link").href = link;
+  document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>

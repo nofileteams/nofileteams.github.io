@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>NOFILE Scripts</title>
+  <link rel="icon" href="icon.png" type="image/png">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      color: green;
+      font-family: sans-serif;
+    }
+    textarea {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      color: lime;
+      text-shadow: 0 0 5px lime, 0 0 10px lime;
+      border: none;
+      resize: none;
+      font-size: 1.2em;
+      padding: 1em;
+      box-sizing: border-box;
+      font-family: monospace;
+      caret-color: lime;
+    }
+    textarea::placeholder {
+      color: green;
+      opacity: 1;
+      text-shadow: none;
+    }
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <textarea id="console" placeholder="Enter script[Shift+Enter to run script]" spellcheck="false" autocomplete="off" autocorrect="off"></textarea>
+  <input type="file" id="fileInput" accept=".py">
+
+  <script>
+    const textarea = document.getElementById("console");
+    const fileInput = document.getElementById("fileInput");
+
+    textarea.addEventListener("keydown", function(e) {
+      if (e.key === "Enter" && e.shiftKey) {
+        e.preventDefault();
+        const input = textarea.value.trim();
+        let output = "";
+
+        try {
+          const result = eval(input); 
+          output = String(result);
+        } catch (err) {
+          output = "Error: " + err.message;
+        }
+
+        textarea.value = output;
+      }
+    });
+
+    textarea.addEventListener("input", function(e) {
+      const val = textarea.value;
+      const pos = textarea.selectionStart;
+      const lastChar = val[pos - 1];
+      let insertChar = null;
+
+      if (lastChar === "(") insertChar = ")";
+      else if (lastChar === `"`) insertChar = `"`;
+
+      if (insertChar) {
+        const before = val.slice(0, pos);
+        const after = val.slice(pos);
+        textarea.value = before + insertChar + after;
+        textarea.selectionStart = textarea.selectionEnd = pos;
+      }
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.ctrlKey && e.shiftKey && !e.altKey) {
+        e.preventDefault();
+        fileInput.click();
+      }
+    });
+
+    fileInput.addEventListener("change", function() {
+      const file = fileInput.files[0];
+      if (file && file.name.endsWith(".py")) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          textarea.value = e.target.result;
+        };
+        reader.readAsText(file);
+      } else {
+        textarea.value = "Error";
+      }
+    });
+  </script>
+</body>
+</html>

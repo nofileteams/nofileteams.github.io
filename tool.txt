@@ -1,0 +1,139 @@
+# --- NOFILE Tools (Tkinter Version Improved) ---
+
+import tkinter as tk
+from tkinter import Toplevel
+
+BG = "#000000"
+FG = "#00aaff"
+BTN_BG = "#000000"
+BTN_BORDER = FG
+
+# ====== タイトル ======
+title_label = tk.Label(
+    frame,
+    text="NOFILE Tools",
+    fg=FG,
+    bg=BG,
+    font=("Arial", 48, "bold")
+)
+title_label.pack(pady=30)
+
+# ====== ポップアップ ======
+def open_popup(title, desc, link):
+    popup = Toplevel(root)
+    popup.title(title)
+    popup.configure(bg=BG)
+    popup.geometry("500x350")
+    popup.resizable(False, False)
+
+    # --- 中央に配置 ---
+    popup.update()
+    w = popup.winfo_width()
+    h = popup.winfo_height()
+    sw = root.winfo_screenwidth()
+    sh = root.winfo_screenheight()
+    popup.geometry(f"{w}x{h}+{int((sw-w)/2)}+{int((sh-h)/2)}")
+
+    # タイトル
+    tk.Label(
+        popup,
+        text=title,
+        fg=FG,
+        bg=BG,
+        font=("Arial", 24, "bold")
+    ).pack(pady=10)
+
+    # 説明
+    tk.Label(
+        popup,
+        text=desc,
+        fg=FG,
+        bg=BG,
+        wraplength=450,
+        justify="left",
+        font=("Arial", 14)
+    ).pack(pady=10)
+
+    # --- ダウンロードボタン（青枠つき） ---
+    border = tk.Frame(
+        popup,
+        bg=BTN_BORDER,
+        highlightthickness=0,
+        bd=0
+    )
+    border.pack(pady=20)
+
+    def open_link():
+        import webbrowser
+        webbrowser.open(link)
+
+    dl_btn = tk.Button(
+        border,
+        text="Download",
+        fg=FG,
+        bg=BTN_BG,
+        activebackground="#001122",
+        font=("Arial", 18, "bold"),
+        command=open_link,
+        highlightbackground=BTN_BORDER,
+        highlightcolor=BTN_BORDER,
+        highlightthickness=3,
+        bd=0,
+        width=12
+    )
+    dl_btn.pack(padx=5, pady=5)
+
+# ====== ボタン生成（青い枠つき） ======
+def create_button(text, title, desc, link):
+    border = tk.Frame(
+        frame,
+        bg=BTN_BORDER,
+        highlightthickness=0,
+        bd=0
+    )
+    border.pack(pady=20)
+
+    btn = tk.Button(
+        border,
+        text=text,
+        fg=FG,
+        bg=BTN_BG,
+        activebackground="#001122",
+        font=("Arial", 24, "bold"),
+        command=lambda: open_popup(title, desc, link),
+        highlightbackground=BTN_BORDER,
+        highlightcolor=BTN_BORDER,
+        highlightthickness=3,
+        bd=0,
+        width=20
+    )
+    btn.pack(padx=5, pady=5)
+
+# ====== ボタン一覧 ======
+create_button(
+    "Ascii Art generator",
+    "Ascii Art generator",
+    "This converts a PNG image file into ASCII art. This is by hayato807.",
+    "https://www.mediafire.com/file/53v2zislwqadjt3/Ascii_Art_generator.zip/file"
+)
+
+create_button(
+    "Chat-X",
+    "Chat-X",
+    "This is something you can chat with. To be honest, I don't know what use this work is.",
+    "https://drive.google.com/file/d/1Zx9oWk2BsictBQFOgxPN-S8elJvu28Mn/view?usp=drive_link"
+)
+
+create_button(
+    "NOFILE-AI",
+    "NOFILE-AI",
+    "This is a crappy, not-so-smart AI created by NOFILE. Well, if you're interested, go ahead and try it.",
+    "https://drive.google.com/file/d/1VghSRV_MHbUTN3rMlO1q6ulfoqO027Ne/view?usp=drive_link"
+)
+
+create_button(
+    "Python executer",
+    "Python executer",
+    "BETA",
+    "https://drive.google.com/file/d/1ZeudGupidcExDV_Qzlj0CC4g-bwQkpCq/view?usp=drive_link"
+)
