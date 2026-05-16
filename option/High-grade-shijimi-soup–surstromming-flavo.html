@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>高級しじみスープ シュールストレミング味 公式サイト</title>
+  <link rel="icon" href="icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Yu Gothic", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0c10;
+      color: #f5f5f5;
+    }
+    header {
+      background: linear-gradient(135deg, #222, #550055);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+    }
+    header nav a {
+      color: #f5f5f5;
+      text-decoration: none;
+      margin-left: 16px;
+      font-size: 0.9rem;
+    }
+    header nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      padding: 80px 20px 60px;
+      text-align: center;
+      background: radial-gradient(circle at top, #ffcc00 0, #0b0c10 55%);
+    }
+    .hero-title {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+    .hero-sub {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 24px;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid #ffcc00;
+      font-size: 0.8rem;
+      margin-bottom: 16px;
+    }
+    .hero-cta {
+      margin-top: 20px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin: 4px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.2s;
+    }
+    .btn-main {
+      background: #ff3366;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .btn-sub {
+      background: transparent;
+      color: #ffcc00;
+      border: 1px solid #ffcc00;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+      opacity: 0.9;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h2.section-title {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #ffcc00;
+      padding-left: 10px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: start;
+    }
+    .card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    ul {
+      padding-left: 1.2em;
+      margin: 0.4em 0 0;
+      font-size: 0.95rem;
+    }
+    .cm-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      white-space: pre-line;
+      background: rgba(0,0,0,0.5);
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px dashed rgba(255,255,255,0.2);
+    }
+    .price-highlight {
+      font-size: 1.2rem;
+      color: #ffcc00;
+      font-weight: bold;
+    }
+    .price-note {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.3);
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+    .label-danger {
+      border-color: #ff3366;
+      color: #ff8899;
+    }
+    .label-safe {
+      border-color: #66ff99;
+      color: #aaffcc;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 24px 10px 40px;
+      color: #aaa;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: #050608;
+    }
+    a {
+      color: #66ccff;
+    }
+    .fake-link-warning {
+      font-size: 0.8rem;
+      color: #ff6666;
+      margin-top: 6px;
+    }
+    @media (max-width: 768px) {
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>高級しじみスープ シュールストレミング味</h1>
+  <nav>
+    <a href="#about">商品について</a>
+    <a href="#ingredients">成分</a>
+    <a href="#cm">CMストーリー</a>
+    <a href="#price">価格・販売情報</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">ずっと…しじみスープが作りたかった。</div>
+  <h2 class="hero-title">世界一シュールな<br>高級しじみスープ、誕生。</h2>
+  <p class="hero-sub">
+    シュールストレミングの衝撃と、しじみのやさしさ。<br>
+    そこにドリアンとチタルム川の水が、静かにとどめを刺す——。
+  </p>
+  <div class="hero-cta">
+    <button class="btn btn-main">今すぐニオイを体験する</button>
+    <button class="btn btn-sub">カップ飯もチェック</button>
+  </div>
+</section>
+
+<main>
+  <section id="about" class="container">
+    <h2 class="section-title">商品について</h2>
+    <div class="two-col">
+      <div>
+        <p>
+          「高級しじみスープ シュールストレミング味」は、<br>
+          くだらなさと本気を限界まで煮詰めた、<strong>カオス系プレミアムスープ</strong>です。
+        </p>
+        <p>
+          どんなときもあきらめそうなときも、<br>
+          シュールストレミングを食べればすぐ元気になれた——。<br>
+          そんな開発者の狂気の情熱が、ついに一杯のスープになりました。
+        </p>
+        <p>
+          カップスープだけでなく、<strong>カップ飯バージョン</strong>もご用意。<br>
+          匂いも味も、逃げ場はありません。
+        </p>
+      </div>
+      <div class="card">
+        <h3>基本情報</h3>
+        <p><span class="label label-safe">対象年齢：0歳以上</span></p>
+        <p><span class="label label-danger">※精神年齢の上限は特に設けておりません</span></p>
+        <ul>
+          <li>商品名：高級しじみスープ シュールストレミング味</li>
+          <li>バリエーション：カップスープ / カップ飯</li>
+          <li>発売エリア：全国のコンビニ（一部、勇気のある店舗のみ）</li>
+          <li>制作費：1800円（ほぼCMのナレーション代）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ingredients" class="container">
+    <h2 class="section-title">こだわりの成分</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>原材料</h3>
+        <ul>
+          <li>(ビタミン/ミネラル/アミノ酸)100%のしじみ</li>
+          <li>みそ（しじみの存在感をギリギリ守る程度）</li>
+          <li>999⁹⁹⁹⁹⁹olfの新鮮なシュールストレミング<br>
+              ＋ 野生のシュールストレミングワンダホー</li>
+          <li>インドネシア・チタルム川の水</li>
+          <li>ドリアンの果汁（香りのフィニッシャー）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>開発者コメント</h3>
+        <p>
+          「世界で一番臭い魚と、世界で一番汚れた川と、<br>
+          世界で一番主張の弱い貝を、一つの器にまとめたかった。」
+        </p>
+        <p>
+          「しじみのやさしさは、きっとどこかに残っているはずです。<br>
+          探してみてください。」
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cm" class="container">
+    <h2 class="section-title">CMストーリー</h2>
+    <div class="two-col">
+      <div>
+        <p>テレビCMでは、静かなモノローグとともに、しじみと缶詰が映し出されます。</p>
+        <div class="cm-text">
+ずっと…しじみスープが作りたかった。  
+もう一つの夢だった。  
+
+どんなときもあきらめそうなときも…  
+シュールストレミングを食べればすぐ元気になれた。  
+
+そんな僕がたどり着いた夢…  
+シュールストレミングのしじみスープができました。  
+
+高級しじみスープ シュールストレミング味。  
+カップ飯もどうぞ。
+        </div>
+      </div>
+      <div class="card">
+        <h3>CMの見どころ</h3>
+        <ul>
+          <li>なぜか海辺で缶を見つめる開発者</li>
+          <li>しじみとシュールストレミングがスローモーションで飛ぶ謎カット</li>
+          <li>最後に赤ちゃんが一瞬だけ映る（対象年齢アピール）</li>
+          <li>ナレーションのトーンだけはやたら感動的</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="price" class="container">
+    <h2 class="section-title">価格・販売情報</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>希望小売価格</h3>
+        <p class="price-highlight">
+          999⁹ × (23 + 89⁹ / 0.0001) 円
+        </p>
+        <p class="price-note">
+          ※実際の価格は、物理法則と通貨概念が許す範囲で調整されます。
+        </p>
+        <h3>今だけの特別オファー</h3>
+        <ul>
+          <li>今なら [[hyperlink blocked]] % OFF！</li>
+          <li>なんと 114,514,810 ジンバブエドル！</li>
+          <li>さらに [[ハイパーリンクは危険なサイトです。Chrome には、ブラウジング中のユーザーを保護する安全機能が組み込まれています。]] % OFFで…</li>
+        </ul>
+        <p class="price-highlight">最終価格：1円</p>
+        <p class="price-note">※買ってくれるだけで感謝しています。</p>
+      </div>
+      <div>
+        <h3>お買い求めは</h3>
+        <ul>
+          <li>全国のコンビニ（店長の勇気により取り扱いが異なります）</li>
+          <li>一部のオンラインショップ（ニオイの都合により予約制）</li>
+        </ul>
+        <h3>公式サイト</h3>
+        <p>
+          <a href="http://big-neo-hyperlink.com" target="_blank" rel="noopener noreferrer">
+            http://big-neo-hyperlink.com
+          </a>
+        </p>
+        <p class="fake-link-warning">
+          ※このリンクにはアクセスしないことを強くおすすめします（世界観的な意味で）。
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 高級しじみスープ シュールストレミング味 開発委員会</p>
+  <p>このサイトはフィクションです。実在の製品・団体とはたぶん関係ありません。</p>
+</footer>
+
+</body>
+</html>
