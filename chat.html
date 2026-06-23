@@ -15,6 +15,24 @@ font-family:sans-serif;
 -webkit-text-size-adjust:100%;
 }
 
+#adminBanner {
+display:none;
+text-align:center;
+font-size:20px;
+font-weight:bold;
+padding:10px;
+background:linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation: rainbowScroll 4s linear infinite;
+background-size: 200% auto;
+}
+
+@keyframes rainbowScroll {
+0% { background-position: 0% center; }
+100% { background-position: 200% center; }
+}
+
 #messages{
 padding:15px;
 padding-bottom:180px;
@@ -31,26 +49,6 @@ box-sizing:border-box;
 word-break:break-all;
 }
 
-.msg img{
-max-width:100%;
-height:auto;
-margin-top:8px;
-border-radius:10px;
-display:block;
-}
-
-.file-link{
-display:inline-block;
-margin-top:8px;
-color:#00aaff;
-text-decoration:none;
-background:#222;
-padding:8px 12px;
-border-radius:8px;
-border:1px solid #00aaff;
-font-weight:bold;
-}
-
 #inputArea {
 position:fixed;
 left:10px;
@@ -61,64 +59,6 @@ flex-direction:column;
 gap:8px;
 box-sizing:border-box;
 z-index:10;
-}
-
-#previewContainer {
-display:none;
-position:relative;
-width:80px;
-height:80px;
-border:2px solid #00aaff;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 0 10px #00aaff;
-background:#111;
-}
-
-#previewImage {
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-#fileIconPreview {
-display:none;
-width:100%;
-height:100%;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-font-size:24px;
-font-weight:bold;
-color:#00aaff;
-}
-
-#fileIconPreview span{
-font-size:10px;
-margin-top:2px;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
-width:70px;
-text-align:center;
-}
-
-#clearPreview {
-display:none;
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.6);
-color:#ff4d4d;
-border:none;
-font-size:24px;
-font-weight:bold;
-cursor:pointer;
-align-items:center;
-justify-content:center;
-}
-
-#previewContainer:hover #clearPreview {
-display:flex;
 }
 
 #chatbar{
@@ -142,7 +82,6 @@ box-sizing:border-box;
 }
 
 #send,
-#imgBtn,
 #adminClear,
 #ok{
 background:#000;
@@ -158,7 +97,7 @@ align-items:center;
 justify-content:center;
 }
 
-#send,#imgBtn{
+#send{
 width:55px;
 height:50px;
 font-size:20px;
@@ -217,14 +156,10 @@ padding:10px;
 box-sizing:border-box;
 }
 
-#file{
-display:none;
-}
-
 @media (max-width: 600px) {
 #messages{padding-bottom:140px;}
 #message{padding:8px;}
-#send,#imgBtn{width:45px;height:40px;font-size:16px;}
+#send{width:45px;height:40px;font-size:16px;}
 }
 </style>
 
@@ -238,6 +173,8 @@ Parse.serverURL="https://parseapi.back4app.com";
 </head>
 <body>
 
+<div id="adminBanner">あなたは管理者です</div>
+
 <div id="adminPanel">
 <button id="adminClear">全チャット削除</button>
 </div>
@@ -246,16 +183,8 @@ Parse.serverURL="https://parseapi.back4app.com";
 
 <div id="inputArea">
 
-<div id="previewContainer">
-<img id="previewImage">
-<div id="fileIconPreview">📁<span id="fileExtBadge"></span></div>
-<button id="clearPreview">&times;</button>
-</div>
-
 <div id="chatbar">
 <input type="text" id="message" placeholder="メッセージ">
-<input type="file" id="file">
-<button id="imgBtn">📁</button>
 <button id="send">➤</button>
 </div>
 
@@ -274,12 +203,6 @@ Parse.serverURL="https://parseapi.back4app.com";
 const popup=document.getElementById("popup");
 const nickname=document.getElementById("nickname");
 const ok=document.getElementById("ok");
-const fileInput=document.getElementById("file");
-const previewContainer=document.getElementById("previewContainer");
-const previewImage=document.getElementById("previewImage");
-const fileIconPreview=document.getElementById("fileIconPreview");
-const fileExtBadge=document.getElementById("fileExtBadge");
-const clearPreview=document.getElementById("clearPreview");
 const messagesContainer=document.getElementById("messages");
 
 let lastMessageCount=0;
@@ -302,24 +225,6 @@ const text=document.createElement("div");
 text.textContent=m.get("name")+": "+m.get("message");
 div.appendChild(text);
 
-const file=m.get("file");
-const isImage=m.get("isImage");
-
-if(file){
-if(isImage){
-const img=document.createElement("img");
-img.src=file.url();
-div.appendChild(img);
-}else{
-const a=document.createElement("a");
-a.href=file.url();
-a.className="file-link";
-a.download=true;
-a.textContent="📁 "+(m.get("ext")||"FILE");
-div.appendChild(a);
-}
-}
-
 messagesContainer.appendChild(div);
 });
 }
@@ -327,26 +232,15 @@ messagesContainer.appendChild(div);
 async function sendMessage(){
 
 const msg=document.getElementById("message").value;
+if(!msg.trim())return;
 
 const obj=new Parse.Object("Message");
 obj.set("name",localStorage.getItem("nickname"));
 obj.set("message",msg);
 
-const file=fileInput.files[0];
-
-if(file){
-const parseFile=new Parse.File(file.name,file);
-await parseFile.save();
-obj.set("file",parseFile);
-obj.set("isImage",file.type.startsWith("image/"));
-obj.set("ext",(file.name.split(".").pop()||"").toUpperCase());
-}
-
 await obj.save();
 
 document.getElementById("message").value="";
-fileInput.value="";
-previewContainer.style.display="none";
 
 loadMessages();
 }
@@ -357,49 +251,21 @@ nickname.addEventListener("input",()=>{
 ok.disabled=nickname.value.trim()==="";
 });
 
-ok.onclick=()=>{
-localStorage.setItem("nickname",nickname.value.trim());
-if(nickname.value.trim()==="hayato807"){
+function checkAdmin(name){
+if(name==="hayato807"){
 document.getElementById("adminPanel").style.display="block";
-}
-popup.style.display="none";
-};
-
-document.getElementById("imgBtn").onclick=()=>fileInput.click();
-
-fileInput.onchange=()=>{
-const file=fileInput.files[0];
-if(!file)return;
-
-if(file.size>104857600){
-alert("100MB超過");
-fileInput.value="";
-return;
-}
-
-const ext=file.name.split(".").pop().toUpperCase();
-
-if(file.type.startsWith("image/")){
-const r=new FileReader();
-r.onload=e=>{
-previewImage.src=e.target.result;
-previewImage.style.display="block";
-fileIconPreview.style.display="none";
-previewContainer.style.display="block";
-};
-r.readAsDataURL(file);
+document.getElementById("adminBanner").style.display="block";
 }else{
-fileExtBadge.textContent=ext;
-previewImage.style.display="none";
-fileIconPreview.style.display="flex";
-previewContainer.style.display="block";
+document.getElementById("adminPanel").style.display="none";
+document.getElementById("adminBanner").style.display="none";
 }
-};
+}
 
-clearPreview.onclick=()=>{
-fileInput.value="";
-previewContainer.style.display="none";
-previewImage.src="";
+ok.onclick=()=>{
+const name=nickname.value.trim();
+localStorage.setItem("nickname",name);
+checkAdmin(name);
+popup.style.display="none";
 };
 
 document.getElementById("send").onclick=sendMessage;
@@ -417,9 +283,7 @@ loadMessages();
 
 if(localStorage.getItem("nickname")){
 popup.style.display="none";
-if(localStorage.getItem("nickname")==="hayato807"){
-document.getElementById("adminPanel").style.display="block";
-}
+checkAdmin(localStorage.getItem("nickname"));
 }
 
 loadMessages();
