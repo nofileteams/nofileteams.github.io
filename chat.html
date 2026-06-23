@@ -1,17 +1,430 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Loading...</title>
-  <link rel="icon" href="icon.png">
-  <meta http-equiv="refresh" content="0; URL=https://nofileteams.site.je/chat/">
-  <style>
-    body {
-      margin: 0;
-      background-color: #000000;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat</title>
+<link rel="icon" href="icon.png">
+
+<style>
+body{
+margin:0;
+background:#000;
+color:#fff;
+font-family:sans-serif;
+-webkit-text-size-adjust:100%;
+}
+
+#messages{
+padding:15px;
+padding-bottom:180px;
+box-sizing:border-box;
+}
+
+.msg{
+background:#111;
+border-radius:12px;
+padding:10px;
+margin-bottom:10px;
+max-width:100%;
+box-sizing:border-box;
+word-break:break-all;
+}
+
+.msg img{
+max-width:100%;
+height:auto;
+margin-top:8px;
+border-radius:10px;
+display:block;
+}
+
+.file-link{
+display:inline-block;
+margin-top:8px;
+color:#00aaff;
+text-decoration:none;
+background:#222;
+padding:8px 12px;
+border-radius:8px;
+border:1px solid #00aaff;
+font-weight:bold;
+}
+
+#inputArea {
+position:fixed;
+left:10px;
+right:10px;
+bottom:10px;
+display:flex;
+flex-direction:column;
+gap:8px;
+box-sizing:border-box;
+z-index:10;
+}
+
+#previewContainer {
+display:none;
+position:relative;
+width:80px;
+height:80px;
+border:2px solid #00aaff;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 0 10px #00aaff;
+background:#111;
+}
+
+#previewImage {
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+#fileIconPreview {
+display:none;
+width:100%;
+height:100%;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-size:24px;
+font-weight:bold;
+color:#00aaff;
+}
+
+#fileIconPreview span{
+font-size:10px;
+margin-top:2px;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+width:70px;
+text-align:center;
+}
+
+#clearPreview {
+display:none;
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
+color:#ff4d4d;
+border:none;
+font-size:24px;
+font-weight:bold;
+cursor:pointer;
+align-items:center;
+justify-content:center;
+}
+
+#previewContainer:hover #clearPreview {
+display:flex;
+}
+
+#chatbar{
+display:flex;
+gap:8px;
+width:100%;
+}
+
+#message{
+flex:1;
+background:#000;
+color:#fff;
+border:2px solid #00aaff;
+border-radius:12px;
+padding:12px;
+box-shadow:0 0 10px #00aaff;
+outline:none;
+font-size:16px;
+box-sizing:border-box;
+-webkit-appearance:none;
+}
+
+#send,
+#imgBtn,
+#adminClear,
+#ok{
+background:#000;
+color:#00aaff;
+border:2px solid #00aaff;
+border-radius:12px;
+box-shadow:0 0 10px #00aaff;
+cursor:pointer;
+font-size:16px;
+-webkit-appearance:none;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+#send,#imgBtn{
+width:55px;
+height:50px;
+font-size:20px;
+flex-shrink:0;
+box-sizing:border-box;
+}
+
+#popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:20;
+padding:20px;
+box-sizing:border-box;
+}
+
+#popupBox{
+background:#111;
+padding:20px;
+border-radius:15px;
+width:100%;
+max-width:300px;
+box-sizing:border-box;
+}
+
+#nickname{
+width:100%;
+box-sizing:border-box;
+padding:10px;
+background:#000;
+color:#fff;
+border:2px solid #00aaff;
+border-radius:10px;
+margin-top:10px;
+font-size:16px;
+-webkit-appearance:none;
+}
+
+#ok{
+width:100%;
+padding:10px;
+margin-top:10px;
+box-sizing:border-box;
+}
+
+#adminPanel{
+display:none;
+padding:10px;
+}
+
+#adminClear{
+padding:10px;
+box-sizing:border-box;
+}
+
+#file{
+display:none;
+}
+
+@media (max-width: 600px) {
+#messages{padding-bottom:140px;}
+#message{padding:8px;}
+#send,#imgBtn{width:45px;height:40px;font-size:16px;}
+}
+</style>
+
+<script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+
+<script>
+Parse.initialize("ZzSsoV3jljyLVooFP7gpuli8JFOCeByC9t7Saamk","YIDXuUoHDlKPlJns0sOLQG8lGqXDIlWXMWbn2VbB");
+Parse.serverURL="https://parseapi.back4app.com";
+</script>
+
 </head>
 <body>
+
+<div id="adminPanel">
+<button id="adminClear">全チャット削除</button>
+</div>
+
+<div id="messages"></div>
+
+<div id="inputArea">
+
+<div id="previewContainer">
+<img id="previewImage">
+<div id="fileIconPreview">📁<span id="fileExtBadge"></span></div>
+<button id="clearPreview">&times;</button>
+</div>
+
+<div id="chatbar">
+<input type="text" id="message" placeholder="メッセージ">
+<input type="file" id="file">
+<button id="imgBtn">📁</button>
+<button id="send">➤</button>
+</div>
+
+</div>
+
+<div id="popup">
+<div id="popupBox">
+<div>ニックネームを入力してください。</div>
+<input id="nickname">
+<button id="ok" disabled>OK</button>
+</div>
+</div>
+
+<script>
+
+const popup=document.getElementById("popup");
+const nickname=document.getElementById("nickname");
+const ok=document.getElementById("ok");
+const fileInput=document.getElementById("file");
+const previewContainer=document.getElementById("previewContainer");
+const previewImage=document.getElementById("previewImage");
+const fileIconPreview=document.getElementById("fileIconPreview");
+const fileExtBadge=document.getElementById("fileExtBadge");
+const clearPreview=document.getElementById("clearPreview");
+const messagesContainer=document.getElementById("messages");
+
+let lastMessageCount=0;
+
+async function loadMessages(){
+const q=new Parse.Query("Message");
+q.ascending("createdAt");
+const res=await q.find();
+lastMessageCount=res.length;
+render(res);
+}
+
+function render(list){
+messagesContainer.innerHTML="";
+list.forEach(m=>{
+const div=document.createElement("div");
+div.className="msg";
+
+const text=document.createElement("div");
+text.textContent=m.get("name")+": "+m.get("message");
+div.appendChild(text);
+
+const file=m.get("file");
+const isImage=m.get("isImage");
+
+if(file){
+if(isImage){
+const img=document.createElement("img");
+img.src=file.url();
+div.appendChild(img);
+}else{
+const a=document.createElement("a");
+a.href=file.url();
+a.className="file-link";
+a.download=true;
+a.textContent="📁 "+(m.get("ext")||"FILE");
+div.appendChild(a);
+}
+}
+
+messagesContainer.appendChild(div);
+});
+}
+
+async function sendMessage(){
+
+const msg=document.getElementById("message").value;
+
+const obj=new Parse.Object("Message");
+obj.set("name",localStorage.getItem("nickname"));
+obj.set("message",msg);
+
+const file=fileInput.files[0];
+
+if(file){
+const parseFile=new Parse.File(file.name,file);
+await parseFile.save();
+obj.set("file",parseFile);
+obj.set("isImage",file.type.startsWith("image/"));
+obj.set("ext",(file.name.split(".").pop()||"").toUpperCase());
+}
+
+await obj.save();
+
+document.getElementById("message").value="";
+fileInput.value="";
+previewContainer.style.display="none";
+
+loadMessages();
+}
+
+setInterval(loadMessages,2000);
+
+nickname.addEventListener("input",()=>{
+ok.disabled=nickname.value.trim()==="";
+});
+
+ok.onclick=()=>{
+localStorage.setItem("nickname",nickname.value.trim());
+if(nickname.value.trim()==="hayato807"){
+document.getElementById("adminPanel").style.display="block";
+}
+popup.style.display="none";
+};
+
+document.getElementById("imgBtn").onclick=()=>fileInput.click();
+
+fileInput.onchange=()=>{
+const file=fileInput.files[0];
+if(!file)return;
+
+if(file.size>104857600){
+alert("100MB超過");
+fileInput.value="";
+return;
+}
+
+const ext=file.name.split(".").pop().toUpperCase();
+
+if(file.type.startsWith("image/")){
+const r=new FileReader();
+r.onload=e=>{
+previewImage.src=e.target.result;
+previewImage.style.display="block";
+fileIconPreview.style.display="none";
+previewContainer.style.display="block";
+};
+r.readAsDataURL(file);
+}else{
+fileExtBadge.textContent=ext;
+previewImage.style.display="none";
+fileIconPreview.style.display="flex";
+previewContainer.style.display="block";
+}
+};
+
+clearPreview.onclick=()=>{
+fileInput.value="";
+previewContainer.style.display="none";
+previewImage.src="";
+};
+
+document.getElementById("send").onclick=sendMessage;
+
+document.getElementById("message").addEventListener("keydown",e=>{
+if(e.key==="Enter")sendMessage();
+});
+
+document.getElementById("adminClear").onclick=async()=>{
+const q=new Parse.Query("Message");
+const res=await q.find();
+await Parse.Object.destroyAll(res);
+loadMessages();
+};
+
+if(localStorage.getItem("nickname")){
+popup.style.display="none";
+if(localStorage.getItem("nickname")==="hayato807"){
+document.getElementById("adminPanel").style.display="block";
+}
+}
+
+loadMessages();
+
+</script>
+
 </body>
 </html>
