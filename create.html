@@ -114,7 +114,6 @@ startButton.addEventListener("click", async () => {
     const query = new Parse.Query(QueryClass);
 
     query.equalTo("index1", index1);
-    query.equalTo("index2", index2);
 
     try {
         const existing = await query.first();
