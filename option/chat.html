@@ -173,6 +173,9 @@
 </div>
 
 <script>
+    if (!localStorage.getItem("visited_nofile_home")) {
+      window.location.href = "https://nofileteams.github.io/block";
+    }
 function openPopup(title, desc, link) {
   document.getElementById("popup-title").textContent = title;
   document.getElementById("popup-desc").textContent = desc;
