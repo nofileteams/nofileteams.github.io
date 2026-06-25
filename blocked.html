@@ -6,23 +6,20 @@
 <link rel="icon" href="icon.png">
 <script src="https://npmcdn.com"></script>
 <script>
-(function() {
+(async function() {
     const localIndex1 = localStorage.getItem("index1");
-    if (!localIndex1) {
-        return;
-    }
+    if (!localIndex1) return;
 
     Parse.initialize("B8PFCPMxHRtPexBXtp5ErHbCkaffcsDt2HjfMsKE", "U8PaiCuaxQW4KKXq4GKNhN8Qc7nFIkKC1o4v4Lwx");
     Parse.serverURL = "https://parseapi.back4app.com";
 
-    const DataClass = Parse.Object.extend("Data");
-    const query = new Parse.Query(DataClass);
+    const DataObject = Parse.Object.extend("Data");
+    const query = new Parse.Query(DataObject);
     query.equalTo("index1", localIndex1);
-
-    query.first().then(function(result) {
-        if (!result) {
-            return;
-        }
+    
+    try {
+        const result = await query.first();
+        if (!result) return;
 
         const dbIndex2 = result.get("index2");
         const localIndex2 = localStorage.getItem("index2");
@@ -30,9 +27,12 @@
         if (localIndex2 !== dbIndex2) {
             window.location.href = "https://nofileteams.github.io/testserver";
         }
-    }).catch(function() {});
+    } catch (error) {
+        return;
+    }
 })();
 </script>
+
 
 <style>
   body {
