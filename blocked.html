@@ -4,32 +4,39 @@
 <meta charset="UTF-8">
 <title>You are blocked</title>
 <link rel="icon" href="icon.png">
-<script src="https://npmcdn.com"></script>
+<script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 <script>
-(async function() {
+(async function () {
     const localIndex1 = localStorage.getItem("index1");
-    if (!localIndex1) return;
-
-    Parse.initialize("B8PFCPMxHRtPexBXtp5ErHbCkaffcsDt2HjfMsKE", "U8PaiCuaxQW4KKXq4GKNhN8Qc7nFIkKC1o4v4Lwx");
-    Parse.serverURL = "https://parseapi.back4app.com";
-
-    const DataObject = Parse.Object.extend("Data");
-    const query = new Parse.Query(DataObject);
-    query.equalTo("index1", localIndex1);
-    
-    try {
-        const result = await query.first();
-        if (!result) return;
-
-        const dbIndex2 = result.get("index2");
-        const localIndex2 = localStorage.getItem("index2");
-
-        if (localIndex2 !== dbIndex2) {
-            window.location.href = "https://nofileteams.github.io/testserver";
-        }
-    } catch (error) {
+    if (!localIndex1) {
         return;
     }
+
+    Parse.initialize(
+        "B8PFCPMxHRtPexBXtp5ErHbCkaffcsDt2HjfMsKE",
+        "U8PaiCuaxQW4KKXq4GKNhN8Qc7nFIkKC1o4v4Lwx"
+    );
+    Parse.serverURL = "https://parseapi.back4app.com";
+
+    const Data = Parse.Object.extend("Data");
+    const query = new Parse.Query(Data);
+
+    query.equalTo("index1", localIndex1);
+
+    const result = await query.first();
+
+    if (!result) {
+        return;
+    }
+
+    const dbIndex2 = result.get("index2");
+    const localIndex2 = localStorage.getItem("index2");
+
+    if (localIndex2 === dbIndex2) {
+        return;
+    }
+
+    window.location.href = "https://nofileteams.github.io/testserver";
 })();
 </script>
 
