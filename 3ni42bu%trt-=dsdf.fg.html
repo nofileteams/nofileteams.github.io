@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>admin</title>
+<link rel="icon" href="icon.png" type="image/png">
+<script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+<style>
+html,body{
+margin:0;
+width:100%;
+height:100%;
+background:#000;
+font-family:Arial,Helvetica,sans-serif;
+color:#33ccff;
+overflow:hidden;
+}
+
+#top{
+height:60px;
+display:flex;
+justify-content:flex-end;
+align-items:center;
+padding:10px 20px;
+box-sizing:border-box;
+border-bottom:2px solid #00aaff;
+box-shadow:0 0 20px #00aaff;
+}
+
+button{
+background:#001a33;
+border:2px solid #00ccff;
+color:#66ddff;
+padding:10px 20px;
+cursor:pointer;
+font-size:16px;
+box-shadow:0 0 15px #00ccff;
+transition:.2s;
+}
+
+button:hover{
+background:#003366;
+box-shadow:0 0 25px #00ffff;
+}
+
+#list{
+height:calc(100% - 60px);
+overflow:auto;
+padding:20px;
+box-sizing:border-box;
+}
+
+.item{
+border:2px solid #00bbff;
+padding:15px;
+margin-bottom:15px;
+box-shadow:0 0 20px #00bbff;
+border-radius:10px;
+}
+
+.title{
+font-size:20px;
+margin-bottom:10px;
+text-shadow:0 0 10px #00ffff;
+}
+
+.field{
+display:flex;
+margin:6px 0;
+align-items:center;
+}
+
+.name{
+width:180px;
+color:#66ffff;
+}
+
+input{
+flex:1;
+background:#001122;
+border:1px solid #00bbff;
+color:#66ddff;
+padding:6px;
+font-size:15px;
+outline:none;
+box-shadow:0 0 8px #00bbff inset;
+}
+
+.buttons{
+margin-top:12px;
+display:flex;
+gap:10px;
+}
+
+.save{
+border-color:#00ff99;
+color:#00ffcc;
+box-shadow:0 0 15px #00ffcc;
+}
+
+.delete{
+border-color:#ff3333;
+color:#ff7777;
+box-shadow:0 0 15px #ff3333;
+}
+</style>
+</head>
+<body>
+
+<div id="top">
+<button onclick="loadData()">更新</button>
+</div>
+
+<div id="list"></div>
+
+<script>
+Parse.initialize("B8PFCPMxHRtPexBXtp5ErHbCkaffcsDt2HjfMsKE","U8PaiCuaxQW4KKXq4GKNhN8Qc7nFIkKC1o4v4Lwx");
+Parse.serverURL="https://parseapi.back4app.com";
+
+const Data=Parse.Object.extend("Data");
+
+async function loadData(){
+
+const query=new Parse.Query(Data);
+query.ascending("createdAt");
+
+const results=await query.find();
+
+const list=document.getElementById("list");
+list.innerHTML="";
+
+results.forEach(obj=>{
+
+const div=document.createElement("div");
+div.className="item";
+
+let html="<div class='title'>ObjectId : "+obj.id+"</div>";
+
+const json=obj.toJSON();
+
+for(const k in json){
+
+if(k==="createdAt")continue;
+if(k==="updatedAt")continue;
+
+html+="<div class='field'>";
+html+="<div class='name'>"+k+"</div>";
+html+="<input data-key='"+k+"' value='"+String(json[k]).replace(/'/g,"&#39;")+"'>";
+html+="</div>";
+
+}
+
+html+="<div class='buttons'>";
+html+="<button class='save'>保存</button>";
+html+="<button class='delete'>削除</button>";
+html+="</div>";
+
+div.innerHTML=html;
+
+div.querySelector(".save").onclick=async()=>{
+
+const inputs=div.querySelectorAll("input");
+
+inputs.forEach(i=>{
+obj.set(i.dataset.key,i.value);
+});
+
+await obj.save();
+loadData();
+
+};
+
+div.querySelector(".delete").onclick=async()=>{
+
+if(confirm("削除しますか？")){
+await obj.destroy();
+loadData();
+}
+
+};
+
+list.appendChild(div);
+
+});
+
+}
+
+loadData();
+</script>
+
+</body>
+</html>
