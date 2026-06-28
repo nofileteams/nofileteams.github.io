@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <title>You are blocked</title>
 <link rel="icon" href="icon.png">
+<script>
+  // Check if a browser environment exists
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    window.location.href = "https://example.com"; // Or simply stop execution
+  }
+</script>
 <style>
   body {
     background-color: #000000;
