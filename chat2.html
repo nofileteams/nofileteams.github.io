@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2B用 Chat</title>
+<link rel="icon" href="icon.png">
+
+<style>
+body{
+margin:0;
+background:#000;
+color:#fff;
+font-family:sans-serif;
+-webkit-text-size-adjust:100%;
+}
+
+#adminBanner {
+display:none;
+text-align:center;
+font-size:20px;
+font-weight:bold;
+padding:10px;
+background:linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation: rainbowScroll 4s linear infinite;
+background-size: 200% auto;
+}
+
+@keyframes rainbowScroll {
+0% { background-position: 0% center; }
+100% { background-position: 200% center; }
+}
+
+#messages{
+padding:15px;
+padding-bottom:180px;
+box-sizing:border-box;
+}
+
+.msg{
+background:#111;
+border-radius:12px;
+padding:10px;
+margin-bottom:10px;
+max-width:100%;
+box-sizing:border-box;
+word-break:break-all;
+}
+
+#inputArea {
+position:fixed;
+left:10px;
+right:10px;
+bottom:10px;
+display:flex;
+flex-direction:column;
+gap:8px;
+box-sizing:border-box;
+z-index:10;
+}
+
+#chatbar{
+display:flex;
+gap:8px;
+width:100%;
+}
+
+#message{
+flex:1;
+background:#000;
+color:#fff;
+border:2px solid #00aaff;
+border-radius:12px;
+padding:12px;
+box-shadow:0 0 10px #00aaff;
+outline:none;
+font-size:16px;
+box-sizing:border-box;
+-webkit-appearance:none;
+}
+
+#send,
+#adminClear,
+#ok{
+background:#000;
+color:#00aaff;
+border:2px solid #00aaff;
+border-radius:12px;
+box-shadow:0 0 10px #00aaff;
+cursor:pointer;
+font-size:16px;
+-webkit-appearance:none;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+#send{
+width:55px;
+height:50px;
+font-size:20px;
+flex-shrink:0;
+box-sizing:border-box;
+}
+
+#popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:20;
+padding:20px;
+box-sizing:border-box;
+}
+
+#popupBox{
+background:#111;
+padding:20px;
+border-radius:15px;
+width:100%;
+max-width:300px;
+box-sizing:border-box;
+}
+
+#nickname{
+width:100%;
+box-sizing:border-box;
+padding:10px;
+background:#000;
+color:#fff;
+border:2px solid #00aaff;
+border-radius:10px;
+margin-top:10px;
+font-size:16px;
+-webkit-appearance:none;
+}
+
+#ok{
+width:100%;
+padding:10px;
+margin-top:10px;
+box-sizing:border-box;
+}
+
+#adminPanel{
+display:none;
+padding:10px;
+}
+
+#adminClear{
+padding:10px;
+box-sizing:border-box;
+}
+
+@media (max-width: 600px) {
+#messages{padding-bottom:140px;}
+#message{padding:8px;}
+#send{width:45px;height:40px;font-size:16px;}
+}
+</style>
+
+<script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+
+<script>
+Parse.initialize("B8PFCPMxHRtPexBXtp5ErHbCkaffcsDt2HjfMsKE","U8PaiCuaxQW4KKXq4GKNhN8Qc7nFIkKC1o4v4Lwx");
+Parse.serverURL="https://parseapi.back4app.com";
+</script>
+
+</head>
+<body>
+
+<div id="adminBanner">あなたは管理者です</div>
+
+<div id="adminPanel">
+<button id="adminClear">全チャット削除</button>
+</div>
+
+<div id="messages"></div>
+
+<div id="inputArea">
+
+<div id="chatbar">
+<input type="text" id="message" placeholder="メッセージ">
+<button id="send">➤</button>
+</div>
+
+</div>
+
+<div id="popup">
+<div id="popupBox">
+<div>ニックネームを入力してください。</div>
+<input id="nickname">
+<button id="ok" disabled>OK</button>
+</div>
+</div>
+
+<script>
+
+const popup=document.getElementById("popup");
+const nickname=document.getElementById("nickname");
+const ok=document.getElementById("ok");
+const messagesContainer=document.getElementById("messages");
+
+let lastMessageCount=0;
+
+async function loadMessages(){
+const q=new Parse.Query("Message");
+q.ascending("createdAt");
+const res=await q.find();
+lastMessageCount=res.length;
+render(res);
+}
+
+function render(list){
+messagesContainer.innerHTML="";
+list.forEach(m=>{
+const div=document.createElement("div");
+div.className="msg";
+
+const text=document.createElement("div");
+text.textContent=m.get("name")+": "+m.get("message");
+div.appendChild(text);
+
+messagesContainer.appendChild(div);
+});
+}
+
+async function sendMessage(){
+
+const msg=document.getElementById("message").value;
+if(!msg.trim())return;
+
+const obj=new Parse.Object("Message");
+obj.set("name",localStorage.getItem("nickname"));
+obj.set("message",msg);
+
+await obj.save();
+
+document.getElementById("message").value="";
+
+loadMessages();
+}
+
+setInterval(loadMessages,2000);
+
+nickname.addEventListener("input",()=>{
+ok.disabled=nickname.value.trim()==="";
+});
+
+function checkAdmin(name){
+if(name==="hayato807"){
+document.getElementById("adminPanel").style.display="block";
+document.getElementById("adminBanner").style.display="block";
+}else{
+document.getElementById("adminPanel").style.display="none";
+document.getElementById("adminBanner").style.display="none";
+}
+}
+
+ok.onclick=()=>{
+const name=nickname.value.trim();
+localStorage.setItem("nickname",name);
+checkAdmin(name);
+popup.style.display="none";
+};
+
+document.getElementById("send").onclick=sendMessage;
+
+document.getElementById("message").addEventListener("keydown",e=>{
+if(e.key==="Enter")sendMessage();
+});
+
+document.getElementById("adminClear").onclick=async()=>{
+const q=new Parse.Query("Message");
+const res=await q.find();
+await Parse.Object.destroyAll(res);
+loadMessages();
+};
+
+if(localStorage.getItem("nickname")){
+popup.style.display="none";
+checkAdmin(localStorage.getItem("nickname"));
+}
+
+loadMessages();
+
+</script>
+
+</body>
+</html>
