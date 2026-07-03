@@ -1,199 +1,181 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<meta charset="UTF-8">
+<title>Create account</title>
+<link rel="icon" href="https://nofileteams.github.io/icon.png">
+
+<script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border: 2px solid #00aaff;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow:
+        0 0 5px #00aaff,
+        0 0 10px #00aaff,
+        0 0 20px #00aaff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    box-shadow:
+        0 0 8px #00aaff,
+        0 0 16px #00aaff,
+        0 0 32px #00aaff;
+}
+
+h1 {
+    margin-top: 20px;
+    color: #00aaff;
+    font-size: 48px;
+    text-shadow:
+        0 0 5px #00aaff,
+        0 0 10px #00aaff,
+        0 0 20px #00aaff,
+        0 0 40px #00aaff;
+}
+
+.credit-text {
+    color: #00aaff;
+    font-size: 14px;
+    margin-top: 5px;
+    text-shadow:
+        0 0 3px #00aaff,
+        0 0 6px #00aaff;
+}
+
+.input-box {
+    width: 300px;
+    padding: 12px;
+    margin-top: 15px;
+    background: black;
+    color: white;
+    border: 2px solid #00aaff;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    box-shadow:
+        0 0 5px #00aaff,
+        0 0 10px #00aaff,
+        0 0 20px #00aaff;
+}
+
+.input-box::placeholder {
+    color: #cccccc;
+}
+
+.start-button {
+    width: 300px;
+    padding: 12px;
+    margin-top: 15px;
+    background: black;
+    color: white;
+    border: 2px solid #00aaff;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow:
+        0 0 5px #00aaff,
+        0 0 10px #00aaff,
+        0 0 20px #00aaff;
+}
+
+.start-button:hover {
+    box-shadow:
+        0 0 8px #00aaff,
+        0 0 16px #00aaff,
+        0 0 32px #00aaff;
+}
+
+.start-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+</style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1">&lt;title&gt;Create account&lt;/title&gt;</p>
-<p class="p1">&lt;link rel="icon" href="https://nofileteams.github.io/icon.png"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script src="https://npmcdn.com/parse/dist/parse.min.js"&gt;&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1">body {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: black;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: Arial, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items: center;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.back-button {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>left: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 10px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: black;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 2px solid #00aaff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 5px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 10px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 20px #00aaff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: all 0.3s ease;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.back-button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 8px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 16px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 32px #00aaff;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">h1 {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #00aaff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 48px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-shadow:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 5px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 10px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 20px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 40px #00aaff;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.credit-text {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #00aaff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-shadow:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 3px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 6px #00aaff;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.input-box {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 300px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: black;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 2px solid #00aaff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>outline: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 5px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 10px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 20px #00aaff;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.input-box::placeholder {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #cccccc;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.start-button {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 300px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: black;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 2px solid #00aaff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 5px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 10px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 20px #00aaff;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.start-button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 8px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 16px #00aaff,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 32px #00aaff;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.start-button:disabled {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity: 0.5;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cursor: not-allowed;</p>
-<p class="p1">}</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;a href="https://nofileteams.github.io" class="back-button"&gt;← Back to Home&lt;/a&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;h1&gt;Create NOFILE account&lt;/h1&gt;</p>
-<p class="p1">&lt;p class="credit-text"&gt;WEB-site by nofileteams, Programming by hayato807&lt;/p&gt;</p>
-<p class="p1">&lt;p class="credit-text"&gt;https://www.youtube.com/@NOFILE_NOFILEteams&lt;/p&gt;</p>
-<p class="p1">&lt;p class="credit-text"&gt;https://www.youtube.com/@hayato807&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;input type="text" id="index1" class="input-box" placeholder="nickname"&gt;</p>
-<p class="p1">&lt;input type="password" id="index2" class="input-box" placeholder="password"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;button id="startButton" class="start-button" disabled&gt;Create&lt;/button&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1">Parse.initialize(</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"B8PFCPMxHRtPexBXtp5ErHbCkaffcsDt2HjfMsKE",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"U8PaiCuaxQW4KKXq4GKNhN8Qc7nFIkKC1o4v4Lwx"</p>
-<p class="p1">);</p>
-<p class="p1">Parse.serverURL = "https://parseapi.back4app.com";</p>
-<p class="p2"><br></p>
-<p class="p1">const index1Input = document.getElementById("index1");</p>
-<p class="p1">const index2Input = document.getElementById("index2");</p>
-<p class="p1">const startButton = document.getElementById("startButton");</p>
-<p class="p2"><br></p>
-<p class="p1">function updateButtonState() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>startButton.disabled =</p>
-<p class="p1"><span class="Apple-converted-space">        </span>index1Input.value.trim() === "" ||</p>
-<p class="p1"><span class="Apple-converted-space">        </span>index2Input.value.trim() === "";</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">index1Input.addEventListener("input", updateButtonState);</p>
-<p class="p1">index2Input.addEventListener("input", updateButtonState);</p>
-<p class="p2"><br></p>
-<p class="p1">startButton.addEventListener("click", async () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const index1 = index1Input.value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const index2 = index2Input.value.trim();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const QueryClass = Parse.Object.extend("Data");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const query = new Parse.Query(QueryClass);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>query.equalTo("index1", index1);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const existing = await query.first();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (existing) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>alert("Error");</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const data = new QueryClass();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>data.set("index1", index1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>data.set("index2", index2);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>await data.save();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>localStorage.setItem("index1", index1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>localStorage.setItem("index2", index2);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>window.location.href = "https://nofileteams.github.io";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>alert("Error");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1">});</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<a href="https://nofileteams.github.io" class="back-button">← Back to Home</a>
+
+<h1>Create NOFILE account</h1>
+<p class="credit-text">WEB-site by nofileteams, Programming by hayato807</p>
+
+<input type="text" id="index1" class="input-box" placeholder="nickname">
+<input type="password" id="index2" class="input-box" placeholder="password">
+
+<button id="startButton" class="start-button" disabled>Create</button>
+
+<script>
+Parse.initialize(
+    "B8PFCPMxHRtPexBXtp5ErHbCkaffcsDt2HjfMsKE",
+    "U8PaiCuaxQW4KKXq4GKNhN8Qc7nFIkKC1o4v4Lwx"
+);
+Parse.serverURL = "https://parseapi.back4app.com";
+
+const index1Input = document.getElementById("index1");
+const index2Input = document.getElementById("index2");
+const startButton = document.getElementById("startButton");
+
+function updateButtonState() {
+    startButton.disabled =
+        index1Input.value.trim() === "" ||
+        index2Input.value.trim() === "";
+}
+
+index1Input.addEventListener("input", updateButtonState);
+index2Input.addEventListener("input", updateButtonState);
+
+startButton.addEventListener("click", async () => {
+    const index1 = index1Input.value.trim();
+    const index2 = index2Input.value.trim();
+
+    const QueryClass = Parse.Object.extend("Data");
+    const query = new Parse.Query(QueryClass);
+
+    query.equalTo("index1", index1);
+
+    try {
+        const existing = await query.first();
+
+        if (existing) {
+            alert("Error");
+            return;
+        }
+
+        const data = new QueryClass();
+        data.set("index1", index1);
+        data.set("index2", index2);
+
+        await data.save();
+
+        localStorage.setItem("index1", index1);
+        localStorage.setItem("index2", index2);
+
+        window.location.href = "https://nofileteams.github.io";
+    } catch (error) {
+        alert("Error");
+    }
+});
+</script>
+
 </body>
 </html>
