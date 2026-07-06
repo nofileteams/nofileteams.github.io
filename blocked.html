@@ -4,11 +4,6 @@
 <meta charset="UTF-8">
 <title>You are blocked</title>
 <link rel="icon" href="icon.png">
-<script>
-  if (Math.random() < 0.1) {
-    window.location.href = "https://nofileteams.github.io/red";
-  }
-</script>
 <style>
   body {
     background-color: #000000;
@@ -157,5 +152,13 @@
   <div class="neon-subtext">------------reason------------</div>
   <div class="neon-subtext">You have detected access by an AI or bot, or through an impossible means.</div>
 </div>
+
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+  if (Math.random() < 0.1) {
+    window.location.href = "https://nofileteams.github.io/red";
+  }
+});
+</script>
 </body>
 </html>
