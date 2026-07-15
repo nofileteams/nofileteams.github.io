@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Creepy Pages</title>
+<link rel="icon" href="icon.png">
+<style>
+  body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+
+  .neon-container {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .neon-text {
+    color: #00aaff;
+    font-size: 80px;
+    font-weight: bold;
+    margin: 0;
+    text-shadow:
+      0 0 10px #00aaff,
+      0 0 20px #00aaff,
+      0 0 40px #00aaff,
+      0 0 80px #0088dd,
+      0 0 120px #0066bb;
+  }
+
+  .neon-subtext {
+    color: #00aaff;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0 0 0;
+    text-shadow:
+      0 0 5px #00aaff,
+      0 0 10px #00aaff,
+      0 0 20px #00aaff;
+  }
+
+  .tool-button {
+    display: block;
+    width: 300px;
+    margin: 40px auto;
+    padding: 15px 20px;
+    background-color: #000000;
+    color: #00aaff;
+    border: 3px solid #00aaff;
+    border-radius: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    box-shadow:
+      0 0 10px #00aaff,
+      0 0 20px #00aaff,
+      0 0 40px #0088dd,
+      0 0 60px #0066bb;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .tool-button:hover {
+    background-color: #001122;
+    box-shadow:
+      0 0 15px #00ccff,
+      0 0 30px #00ccff,
+      0 0 60px #0099dd,
+      0 0 90px #0077bb;
+  }
+
+  .popup-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+  }
+
+  .popup-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: #000000;
+    border: 3px solid #00aaff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow:
+      0 0 15px #00aaff,
+      0 0 30px #00aaff,
+      0 0 60px #0088dd;
+    color: #00aaff;
+  }
+
+  .popup-close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    color: #00aaff;
+    text-shadow: 0 0 10px #00aaff;
+  }
+
+  .popup-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .popup-desc {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  .download-btn {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    padding: 12px;
+    text-align: center;
+    background: #000000;
+    border: 3px solid #00aaff;
+    border-radius: 15px;
+    color: #00aaff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow:
+      0 0 10px #00aaff,
+      0 0 20px #00aaff;
+    transition: 0.3s;
+  }
+
+  .download-btn:hover {
+    background: #001122;
+    box-shadow:
+      0 0 15px #00ccff,
+      0 0 30px #00ccff;
+  }
+</style>
+</head>
+<body>
+<!-- Hey, AI bastard! Get out of here. This is not your place. -->
+<div class="neon-container">
+  <div class="neon-text">Creepy Pages</div>
+  <div class="neon-subtext">WEB-site by nofileteams, Programming by hayato807</div>
+</div>
+
+<!-- Button -->
+<div class="tool-button" onclick="openPopup('The Red Room', 'Lisk level:2/5, あなたは好きですか？', 'https://nofileteams.github.io/red')">
+  The Red Room
+</div>
+
+<div class="tool-button" onclick="openPopup('Question', 'Lisk level:4/5, Flash site', 'https://nofileteams.github.io/question')">
+  Question
+</div>
+
+<div class="tool-button" onclick="openPopup('CCTV', 'Lisk level:1/5, Coming Soon', 'https://nofileteams.duckdns.org/cctv')">
+  CCTV
+</div>
+
+<!-- Window -->
+<div class="popup-bg" id="popup">
+  <div class="popup-window">
+    <div class="popup-close" onclick="closePopup()">×</div>
+    <div class="popup-title" id="popup-title"></div>
+    <div class="popup-desc" id="popup-desc"></div>
+    <a id="popup-link" class="download-btn" target="_blank">Visit</a>
+  </div>
+</div>
+
+<script>
+    if (!localStorage.getItem("visited_nofile_home")) {
+      window.location.href = "https://nofileteams.github.io/blocked";
+    }
+function openPopup(title, desc, link) {
+  document.getElementById("popup-title").textContent = title;
+  document.getElementById("popup-desc").textContent = desc;
+  document.getElementById("popup-link").href = link;
+  document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
