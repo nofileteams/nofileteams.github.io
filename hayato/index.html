@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pythonを活用したオリジナル多機能電卓アプリの制作</title>
+  <link rel="icon" type="image/png" href="icon.png">
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #20252d;
+      --muted: #667085;
+      --accent: #4f46e5;
+      --accent-soft: #eef2ff;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(15, 23, 42, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.8;
+    }
+
+    header {
+      padding: 80px 20px 70px;
+      background: linear-gradient(135deg, #111827, #312e81);
+      color: white;
+      text-align: center;
+    }
+
+    header .label {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      font-size: .9rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      max-width: 950px;
+      margin: 0 auto;
+      font-size: clamp(2rem, 5vw, 3.7rem);
+      line-height: 1.25;
+      letter-spacing: .02em;
+    }
+
+    header p {
+      max-width: 720px;
+      margin: 22px auto 0;
+      color: #dbe4ff;
+      font-size: 1.05rem;
+    }
+
+    main {
+      width: min(1000px, calc(100% - 32px));
+      margin: 42px auto 80px;
+    }
+
+    .step {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 34px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.55rem;
+    }
+
+    .description {
+      color: var(--muted);
+      margin: 0 0 24px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    figure {
+      margin: 0;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #fafafa;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 560px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #eee;
+    }
+
+    figcaption {
+      padding: 10px 4px 2px;
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    .result {
+      margin-top: 26px;
+    }
+
+    .result-title {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .video-card {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      max-height: 620px;
+      background: #000;
+    }
+
+    .video-info {
+      padding: 14px 18px;
+      color: #dbe4ff;
+      font-size: .9rem;
+    }
+
+    .video-info a {
+      color: #a5b4fc;
+      word-break: break-all;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px 50px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 55px 18px 48px;
+      }
+
+      main {
+        width: min(100% - 20px, 1000px);
+        margin-top: 20px;
+      }
+
+      .step {
+        padding: 22px;
+        border-radius: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="label">自由研究</div>
+    <h1>Pythonを活用したオリジナル多機能電卓アプリの制作</h1>
+    <p>Pythonを使ったデスクトップアプリの制作過程を、画像と動画で紹介します。</p>
+  </header>
+
+  <main>
+    <section class="step">
+      <div class="step-number">01</div>
+      <h2>ウィンドウの基本設定</h2>
+      <p class="description">
+        最初にPythonを使って、新しくデスクトップアプリの画面（ウィンドウ）を立ち上げるための基本設定をしています。
+      </p>
+
+      <div class="image-grid">
+        <figure>
+          <img src="q1.png" alt="ウィンドウの基本設定に関する画像" loading="lazy">
+          <figcaption>基本設定のコード</figcaption>
+        </figure>
+      </div>
+
+      <div class="result">
+        <p class="result-title">これが結果です↓</p>
+        <figure>
+          <img src="q2.png" alt="基本設定後の結果" loading="lazy">
+          <figcaption>q2.png</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-number">02</div>
+      <h2>ボタンを追加</h2>
+      <p class="description">次にボタンを追加します。</p>
+
+      <div class="image-grid">
+        <figure>
+          <img src="q3.png" alt="ボタン追加のコード" loading="lazy">
+          <figcaption>q3.png</figcaption>
+        </figure>
+        <figure>
+          <img src="q4.png" alt="ボタン追加に関する画像" loading="lazy">
+          <figcaption>q4.png</figcaption>
+        </figure>
+      </div>
+
+      <div class="result">
+        <p class="result-title">これが結果です↓</p>
+        <figure>
+          <img src="q5.png" alt="ボタン追加後の結果" loading="lazy">
+          <figcaption>q5.png</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-number">03</div>
+      <h2>計算処理を追加</h2>
+      <p class="description">
+        最後に入力された計算式を計算して、その結果を画面に表示する処理を追加します。
+      </p>
+
+      <div class="image-grid">
+        <figure>
+          <img src="q6.png" alt="計算処理を追加するコード" loading="lazy">
+          <figcaption>q6.png</figcaption>
+        </figure>
+      </div>
+
+      <div class="result">
+        <p class="result-title">これが結果です↓</p>
+        <figure>
+          <img src="q7.png" alt="計算処理追加後の結果" loading="lazy">
+          <figcaption>q7.png</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-number">04</div>
+      <h2>実際の動作</h2>
+      <p class="description">こちらが動作です↓</p>
+
+      <div class="video-card">
+        <video controls preload="metadata">
+          <source src="q1.mp4" type="video/mp4">
+          お使いのブラウザは動画再生に対応していません。
+        </video>
+        <div class="video-info">
+          動画ファイル：q1.mp4<br>
+          一応URL：
+          <a href="https://nofileteams.com/hayato/q1.mp4" target="_blank" rel="noopener noreferrer">
+            https://nofileteams.com/hayato/q1.mp4
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Pythonを活用したオリジナル多機能電卓アプリの制作
+  </footer>
+</body>
+</html>
