@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIG-NEO-SPONGE-3000</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <!-- これはジョークサイトです -->
+    <style>
+        /* 全体のスタイル設定 */
+        body {
+            background-color: #050510;
+            color: #fff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* コンテナのネオン風装飾 */
+        .container {
+            text-align: center;
+            padding: 40px;
+            border: 2px solid #00f3ff;
+            border-radius: 15px;
+            background-color: rgba(0, 243, 255, 0.03);
+            box-shadow: 0 0 15px #00f3ff, inset 0 0 15px #00f3ff;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* 画像を大きく表示 */
+        .main-image {
+            max-width: 90%;
+            height: auto;
+            margin-bottom: 30px;
+            border: 3px solid #00f3ff;
+            border-radius: 8px;
+            box-shadow: 0 0 25px #00f3ff;
+        }
+
+        /* テキストエリアのスタイル */
+        .content-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            text-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff;
+        }
+
+        /* ランダムな数字を目立たせる */
+        #random-number {
+            font-weight: bold;
+            color: #00f3ff;
+            text-shadow: 0 0 8px #00f3ff, 0 0 20px #00f3ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 大きく画像を表示 -->
+        <img src="whatthehell.png" alt="whatthehell" class="main-image">
+
+        <!-- テキストコンテンツ -->
+        <div class="content-text">
+            <p>[[BIG-NEO-SPONGE-3000]]</p>
+            <p>〜あなたの[[ムシケラサイズ]]な日常を [[超絶ハイパーパワーアップ]]〜</p>
+            <p>お値段は超オトク！<span id="random-number">--------</span>円！！！</p>
+            <p>いや～やりますねぇ</p>
+        </div>
+    </div>
+
+    <script>
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        const numberElement = document.getElementById('random-number');
+        
+        setInterval(() => {
+            const randomNum = getRandomNumber(1000000, 999999999999999999);
+            numberElement.textContent = randomNum;
+        }, 10); 
+    </script>
+
+</body>
+</html>
