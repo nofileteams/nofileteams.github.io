@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ホシイモノリスト</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <style>
+    :root {
+      --bg: #020817;
+      --panel: rgba(4, 22, 48, 0.82);
+      --blue: #19a7ff;
+      --cyan: #62d9ff;
+      --text: #dff6ff;
+      --muted: #8ab7cf;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", "Yu Gothic", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(0, 145, 255, .18), transparent 38%),
+        linear-gradient(135deg, #01040b, var(--bg) 55%, #00142a);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,.018) 0,
+        rgba(255,255,255,.018) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+    }
+
+    .container {
+      width: min(900px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 72px 0 60px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      letter-spacing: .08em;
+      color: #fff;
+      text-shadow:
+        0 0 7px var(--cyan),
+        0 0 20px var(--blue),
+        0 0 45px var(--blue);
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      font-size: 1rem;
+      letter-spacing: .25em;
+      color: var(--muted);
+      text-shadow: 0 0 10px rgba(25,167,255,.7);
+    }
+
+    .list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px 26px;
+      border: 1px solid rgba(25,167,255,.65);
+      border-radius: 14px;
+      background: var(--panel);
+      box-shadow:
+        0 0 8px rgba(25,167,255,.35),
+        inset 0 0 24px rgba(25,167,255,.05);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cyan);
+      box-shadow:
+        0 0 14px rgba(25,167,255,.65),
+        0 0 35px rgba(25,167,255,.22),
+        inset 0 0 24px rgba(25,167,255,.08);
+    }
+
+    .name {
+      margin: 0 0 13px;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 9px rgba(98,217,255,.7);
+    }
+
+    .link {
+      display: inline-block;
+      color: var(--cyan);
+      text-decoration: none;
+      word-break: break-all;
+      text-shadow: 0 0 8px rgba(25,167,255,.7);
+    }
+
+    .link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .readme {
+      margin-top: 10px;
+    }
+
+    .readme-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    footer {
+      margin-top: 38px;
+      text-align: center;
+      color: #53788d;
+      font-size: .8rem;
+      letter-spacing: .12em;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding-top: 48px; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>ホシイモノリスト</h1>
+      <p class="subtitle">どれか一つ選んで買ってください。おねがい😇</p>
+    </header>
+
+    <section class="list">
+      <article class="card">
+        <h2 class="name">4,486円</h2>
+        <a class="link" href="https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-%E3%82%B3%E3%83%AB%E3%83%88%E3%83%91%E3%82%A4%E3%82%BD%E3%83%B3-357%E3%83%9E%E3%82%B0%E3%83%8A%E3%83%A0-%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%A2%E3%83%87%E3%83%AB-10%E6%AD%B3%E4%BB%A5%E4%B8%8A%E3%82%A8%E3%82%A2%E3%83%BCHOP%E3%83%8F%E3%83%B3%E3%83%89%E3%82%AC%E3%83%B3/dp/B01D4BLG0O/ref=sr_1_14?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=3JLXUDO6QTA51&dib=eyJ2IjoiMSJ9.GyDijp1jXPMmvvSnxRyxHxklu4cXE2m1QIrGhb__dIiE-GxyFY814cDw-MQT5fdkFC4pnaGliTvlUiNr2-_nLfbSZNFdllPQXVdcKCm3tJxezaYjNbaerHxtJA9lJxDjq47aPSiaYZ4u34IkDd2D8ILKzWFHlyv1JICKmg7dlR4_m9tqJ97ecchzO3LKw9-XoPhEUmNenFOSGhBxKSzAWPNLMSrGnGdlPzy5LofcziS_EPWT1tHp1Nt9tR3QmLpsmEIGycsDvtO8Kt3tzMX34rlCzcOUecsTwv72nE-bXG8.-sRY2L8dGxFMtTWnEZImz_7NDg0lKH2SU9WSpsWdxhE&dib_tag=se&keywords=revolver&qid=1787151423&sprefix=revolver%2Caps%2C180&sr=8-14&th=1">https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-%E3%82%B3%E3%83%AB%E3%83%88%E3%83%91%E3%82%A4%E3%82%BD%E3%83%B3-357%E3%83%9E%E3%82%B0%E3%83%8A%E3%83%A0-%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%A2%E3%83%87%E3%83%AB-10%E6%AD%B3%E4%BB%A5%E4%B8%8A%E3%82%A8%E3%82%A2%E3%83%BCHOP%E3%83%8F%E3%83%B3%E3%83%89%E3%82%AC%E3%83%B3/dp/B01D4BLG0O/ref=sr_1_14?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=3JLXUDO6QTA51&dib=eyJ2IjoiMSJ9.GyDijp1jXPMmvvSnxRyxHxklu4cXE2m1QIrGhb__dIiE-GxyFY814cDw-MQT5fdkFC4pnaGliTvlUiNr2-_nLfbSZNFdllPQXVdcKCm3tJxezaYjNbaerHxtJA9lJxDjq47aPSiaYZ4u34IkDd2D8ILKzWFHlyv1JICKmg7dlR4_m9tqJ97ecchzO3LKw9-XoPhEUmNenFOSGhBxKSzAWPNLMSrGnGdlPzy5LofcziS_EPWT1tHp1Nt9tR3QmLpsmEIGycsDvtO8Kt3tzMX34rlCzcOUecsTwv72nE-bXG8.-sRY2L8dGxFMtTWnEZImz_7NDg0lKH2SU9WSpsWdxhE&dib_tag=se&keywords=revolver&qid=1787151423&sprefix=revolver%2Caps%2C180&sr=8-14&th=1</a>
+      </article>
+
+      <article class="card">
+        <h2 class="name">3,633円</h2>
+        <a class="link" href="https://www.amazon.co.jp/%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%A2%E3%83%87%E3%83%AB-Crown-Model-%E3%83%9B%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97%E3%82%A8%E3%82%A2%E3%83%AA%E3%83%9C%E3%83%AB%E3%83%90%E3%83%BC-%E3%82%A8%E3%82%A2%E3%83%AA%E3%83%9C%E3%83%AB%E3%83%90%E3%83%BC/dp/B0FLX8GBWH/ref=sr_1_32?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=3JLXUDO6QTA51&dib=eyJ2IjoiMSJ9.GyDijp1jXPMmvvSnxRyxHxklu4cXE2m1QIrGhb__dIiE-GxyFY814cDw-MQT5fdkFC4pnaGliTvlUiNr2-_nLfbSZNFdllPQXVdcKCm3tJxezaYjNbaerHxtJA9lJxDjq47aPSiaYZ4u34IkDd2D8ILKzWFHlyv1JICKmg7dlR4_m9tqJ97ecchzO3LKw9-XoPhEUmNenFOSGhBxKSzAWPNLMSrGnGdlPzy5LofcziS_EPWT1tHp1Nt9tR3QmLpsmEIGycsDvtO8Kt3tzMX34rlCzcOUecsTwv72nE-bXG8.-sRY2L8dGxFMtTWnEZImz_7NDg0lKH2SU9WSpsWdxhE&dib_tag=se&keywords=revolver&qid=1787151423&sprefix=revolver%2Caps%2C180&sr=8-32&th=1">https://www.amazon.co.jp/%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%A2%E3%83%87%E3%83%AB-Crown-Model-%E3%83%9B%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97%E3%82%A8%E3%82%A2%E3%83%AA%E3%83%9C%E3%83%AB%E3%83%90%E3%83%BC-%E3%82%A8%E3%82%A2%E3%83%AA%E3%83%9C%E3%83%AB%E3%83%90%E3%83%BC/dp/B0FLX8GBWH/ref=sr_1_32?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=3JLXUDO6QTA51&dib=eyJ2IjoiMSJ9.GyDijp1jXPMmvvSnxRyxHxklu4cXE2m1QIrGhb__dIiE-GxyFY814cDw-MQT5fdkFC4pnaGliTvlUiNr2-_nLfbSZNFdllPQXVdcKCm3tJxezaYjNbaerHxtJA9lJxDjq47aPSiaYZ4u34IkDd2D8ILKzWFHlyv1JICKmg7dlR4_m9tqJ97ecchzO3LKw9-XoPhEUmNenFOSGhBxKSzAWPNLMSrGnGdlPzy5LofcziS_EPWT1tHp1Nt9tR3QmLpsmEIGycsDvtO8Kt3tzMX34rlCzcOUecsTwv72nE-bXG8.-sRY2L8dGxFMtTWnEZImz_7NDg0lKH2SU9WSpsWdxhE&dib_tag=se&keywords=revolver&qid=1787151423&sprefix=revolver%2Caps%2C180&sr=8-32&th=1</a>
+      </article>
+
+      <article class="card">
+        <h2 class="name">3,599円</h2>
+        <a class="link" href="https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-No-25-%E3%83%87%E3%82%B6%E3%83%BC%E3%83%88%E3%82%A4%E3%83%BC%E3%82%B0%E3%83%AB-%E3%82%B9%E3%83%86%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%97-10%E6%AD%B3%E4%BB%A5%E4%B8%8A%E3%82%A8%E3%82%A2%E3%83%BCHOP%E3%83%8F%E3%83%B3%E3%83%89%E3%82%AC%E3%83%B3/dp/B077ZV1357/ref=sr_1_3?crid=1JQB1PSXVTDST&dib=eyJ2IjoiMSJ9.IMRsdZT6VzFtF7x0ifmtgPw2U-CWGexboI1Y_G5mXZaIMQt1bCrmMJCs80IVIg-1EQ93O1SiYrE_XzElwZSE7vKObh66qTLAs46iiM3NfE4sKPmqkFGubNKfTddfHwUPvu2PKsHlW6cbkk5cpWoJxu-6ZXpwsDnoU-5TjOcQUjENAwWDt-mFNW4-Z8KGcazvTvCOR_SsIgkgFfKUUZTuxZrev2zWF6JK-3IVk_AI3holEEemiZ9NRSPGs1JOCnzo8qfdYiJaZ9O5WPyhmAe8aKQd6HMFUqdyRtTx3yT4lvQ.jjp0npkZcDgQYoXG8FRt7fSgL7_5Zr5xTWjRfW0rB7k&dib_tag=se&keywords=desert+eagle&qid=1787152092&sprefix=desert+ea%2Caps%2C186&sr=8-3">https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-No-25-%E3%83%87%E3%82%B6%E3%83%BC%E3%83%88%E3%82%A4%E3%83%BC%E3%82%B0%E3%83%AB-%E3%82%B9%E3%83%86%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%97-10%E6%AD%B3%E4%BB%A5%E4%B8%8A%E3%82%A8%E3%82%A2%E3%83%BCHOP%E3%83%8F%E3%83%B3%E3%83%89%E3%82%AC%E3%83%B3/dp/B077ZV1357/ref=sr_1_3?crid=1JQB1PSXVTDST&dib=eyJ2IjoiMSJ9.IMRsdZT6VzFtF7x0ifmtgPw2U-CWGexboI1Y_G5mXZaIMQt1bCrmMJCs80IVIg-1EQ93O1SiYrE_XzElwZSE7vKObh66qTLAs46iiM3NfE4sKPmqkFGubNKfTddfHwUPvu2PKsHlW6cbkk5cpWoJxu-6ZXpwsDnoU-5TjOcQUjENAwWDt-mFNW4-Z8KGcazvTvCOR_SsIgkgFfKUUZTuxZrev2zWF6JK-3IVk_AI3holEEemiZ9NRSPGs1JOCnzo8qfdYiJaZ9O5WPyhmAe8aKQd6HMFUqdyRtTx3yT4lvQ.jjp0npkZcDgQYoXG8FRt7fSgL7_5Zr5xTWjRfW0rB7k&dib_tag=se&keywords=desert+eagle&qid=1787152092&sprefix=desert+ea%2Caps%2C186&sr=8-3</a>
+        <div class="readme">
+          <span class="readme-label">BB弾</span>
+          <a class="link" href="https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-TOKYO-MARUI-0-12gBB-%E3%83%93%E3%83%83%E3%82%AF%E3%83%9C%E3%83%88%E3%83%AB/dp/B00GXZ2YL4/ref=sr_1_11?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=YEWVFTVL5D71&dib=eyJ2IjoiMSJ9.D12ob_QktLdfgb0JRC8oYtw3iUyyHLlPEakDUIqPB_lVUS2sE1VQBCz2QHkCegYmfgrXxoWM9d3ApiN5gGK7WmEUrtKMfm722mHmrpXPCb0i2BRv5lIp7tA2JAL38ajU05m41x64CY-Li364dUN2WIDPv90zKCSeKI6USnbC6I1bi6lFaGl40IuCWwmxMl9Iklnx4BHpO0FHYh5Jw-WRPBvtqYIZjc6TTXmqq7MWJQtubxyBX764c87SgUqxvBCilnmv1Pd1sFjQcBvvRwpOTzddh2sTT_m_4PEbT-7h0-Q.KrdUt4vw2hvIM-RFgX3YCVcsoGN9LW_1OujkFAlbiqM&dib_tag=se&keywords=bb%E5%BC%BE%2B0.12g&qid=1787153611&s=hobby&sprefix=bb%E5%BC%BE%2B0.12g%2Chobby%2C156&sr=1-11&th=1">https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-TOKYO-MARUI-0-12gBB-%E3%83%93%E3%83%83%E3%82%AF%E3%83%9C%E3%83%88%E3%83%AB/dp/B00GXZ2YL4/ref=sr_1_11?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=YEWVFTVL5D71&dib=eyJ2IjoiMSJ9.D12ob_QktLdfgb0JRC8oYtw3iUyyHLlPEakDUIqPB_lVUS2sE1VQBCz2QHkCegYmfgrXxoWM9d3ApiN5gGK7WmEUrtKMfm722mHmrpXPCb0i2BRv5lIp7tA2JAL38ajU05m41x64CY-Li364dUN2WIDPv90zKCSeKI6USnbC6I1bi6lFaGl40IuCWwmxMl9Iklnx4BHpO0FHYh5Jw-WRPBvtqYIZjc6TTXmqq7MWJQtubxyBX764c87SgUqxvBCilnmv1Pd1sFjQcBvvRwpOTzddh2sTT_m_4PEbT-7h0-Q.KrdUt4vw2hvIM-RFgX3YCVcsoGN9LW_1OujkFAlbiqM&dib_tag=se&keywords=bb%E5%BC%BE%2B0.12g&qid=1787153611&s=hobby&sprefix=bb%E5%BC%BE%2B0.12g%2Chobby%2C156&sr=1-11&th=1</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2 class="name">3,765円</h2>
+        <a class="link" href="https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-TOKYO-MARUI-%E3%82%B7%E3%83%AB%E3%83%90%E3%83%BC%E3%83%A2%E3%83%87%E3%83%AB-10%E6%AD%B3%E4%BB%A5%E4%B8%8A%E9%9B%BB%E5%8B%95%E3%83%96%E3%83%AD%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%83%95%E3%83%AB%E3%82%AA%E3%83%BC%E3%83%88/dp/B00I0HZEG0/ref=pd_rhf_se_s_pd_sbs_rvi_d_sccl_1_8/357-3400138-2826839?pd_rd_w=3y05l&content-id=amzn1.sym.40b6f6bc-3d2b-4fce-9b50-1c62529d2e48&pf_rd_p=40b6f6bc-3d2b-4fce-9b50-1c62529d2e48&pf_rd_r=DSB1R5FNRZA06YQF0EGX&pd_rd_wg=DrpPA&pd_rd_r=603ab1bc-d627-45c6-8cf1-a9783a93275f&pd_rd_i=B00I0HZEG0&th=1">https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-TOKYO-MARUI-%E3%82%B7%E3%83%AB%E3%83%90%E3%83%BC%E3%83%A2%E3%83%87%E3%83%AB-10%E6%AD%B3%E4%BB%A5%E4%B8%8A%E9%9B%BB%E5%8B%95%E3%83%96%E3%83%AD%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%83%95%E3%83%AB%E3%82%AA%E3%83%BC%E3%83%88/dp/B00I0HZEG0/ref=pd_rhf_se_s_pd_sbs_rvi_d_sccl_1_8/357-3400138-2826839?pd_rd_w=3y05l&content-id=amzn1.sym.40b6f6bc-3d2b-4fce-9b50-1c62529d2e48&pf_rd_p=40b6f6bc-3d2b-4fce-9b50-1c62529d2e48&pf_rd_r=DSB1R5FNRZA06YQF0EGX&pd_rd_wg=DrpPA&pd_rd_r=603ab1bc-d627-45c6-8cf1-a9783a93275f&pd_rd_i=B00I0HZEG0&th=1</a>
+        <div class="readme">
+          <span class="readme-label">BB弾</span>
+          <a class="link" href="https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-TOKYO-MARUI-0-12gBB-%E3%83%93%E3%83%83%E3%82%AF%E3%83%9C%E3%83%88%E3%83%AB/dp/B00GXZ2YL4/ref=sr_1_11?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=YEWVFTVL5D71&dib=eyJ2IjoiMSJ9.D12ob_QktLdfgb0JRC8oYtw3iUyyHLlPEakDUIqPB_lVUS2sE1VQBCz2QHkCegYmfgrXxoWM9d3ApiN5gGK7WmEUrtKMfm722mHmrpXPCb0i2BRv5lIp7tA2JAL38ajU05m41x64CY-Li364dUN2WIDPv90zKCSeKI6USnbC6I1bi6lFaGl40IuCWwmxMl9Iklnx4BHpO0FHYh5Jw-WRPBvtqYIZjc6TTXmqq7MWJQtubxyBX764c87SgUqxvBCilnmv1Pd1sFjQcBvvRwpOTzddh2sTT_m_4PEbT-7h0-Q.KrdUt4vw2hvIM-RFgX3YCVcsoGN9LW_1OujkFAlbiqM&dib_tag=se&keywords=bb%E5%BC%BE%2B0.12g&qid=1787153611&s=hobby&sprefix=bb%E5%BC%BE%2B0.12g%2Chobby%2C156&sr=1-11&th=1">https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-TOKYO-MARUI-0-12gBB-%E3%83%93%E3%83%83%E3%82%AF%E3%83%9C%E3%83%88%E3%83%AB/dp/B00GXZ2YL4/ref=sr_1_11?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=YEWVFTVL5D71&dib=eyJ2IjoiMSJ9.D12ob_QktLdfgb0JRC8oYtw3iUyyHLlPEakDUIqPB_lVUS2sE1VQBCz2QHkCegYmfgrXxoWM9d3ApiN5gGK7WmEUrtKMfm722mHmrpXPCb0i2BRv5lIp7tA2JAL38ajU05m41x64CY-Li364dUN2WIDPv90zKCSeKI6USnbC6I1bi6lFaGl40IuCWwmxMl9Iklnx4BHpO0FHYh5Jw-WRPBvtqYIZjc6TTXmqq7MWJQtubxyBX764c87SgUqxvBCilnmv1Pd1sFjQcBvvRwpOTzddh2sTT_m_4PEbT-7h0-Q.KrdUt4vw2hvIM-RFgX3YCVcsoGN9LW_1OujkFAlbiqM&dib_tag=se&keywords=bb%E5%BC%BE%2B0.12g&qid=1787153611&s=hobby&sprefix=bb%E5%BC%BE%2B0.12g%2Chobby%2C156&sr=1-11&th=1</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2 class="name">4,761円</h2>
+        <a class="link" href="https://www.amazon.co.jp/%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%A2%E3%83%87%E3%83%AB-AK47-10%E6%AD%B3%E4%BB%A5%E4%B8%8A-%E3%82%A8%E3%82%A2%E3%83%BC%E3%82%B3%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0%E3%83%A9%E3%82%A4%E3%83%95%E3%83%AB-%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF/dp/B0BW9M4C4S/ref=pd_rhf_se_s_pd_sbs_rvi_d_sccl_1_1/357-3400138-2826839?pd_rd_w=3y05l&content-id=amzn1.sym.40b6f6bc-3d2b-4fce-9b50-1c62529d2e48&pf_rd_p=40b6f6bc-3d2b-4fce-9b50-1c62529d2e48&pf_rd_r=DSB1R5FNRZA06YQF0EGX&pd_rd_wg=DrpPA&pd_rd_r=603ab1bc-d627-45c6-8cf1-a9783a93275f&pd_rd_i=B0BW9M4C4S&psc=1">https://www.amazon.co.jp/%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%A2%E3%83%87%E3%83%AB-AK47-10%E6%AD%B3%E4%BB%A5%E4%B8%8A-%E3%82%A8%E3%82%A2%E3%83%BC%E3%82%B3%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0%E3%83%A9%E3%82%A4%E3%83%95%E3%83%AB-%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF/dp/B0BW9M4C4S/ref=pd_rhf_se_s_pd_sbs_rvi_d_sccl_1_1/357-3400138-2826839?pd_rd_w=3y05l&content-id=amzn1.sym.40b6f6bc-3d2b-4fce-9b50-1c62529d2e48&pf_rd_p=40b6f6bc-3d2b-4fce-9b50-1c62529d2e48&pf_rd_r=DSB1R5FNRZA06YQF0EGX&pd_rd_wg=DrpPA&pd_rd_r=603ab1bc-d627-45c6-8cf1-a9783a93275f&pd_rd_i=B0BW9M4C4S&psc=1</a>
+        <div class="readme">
+          <span class="readme-label">BB弾</span>
+          <a class="link" href="https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-TOKYO-MARUI-0-12gBB-%E3%83%93%E3%83%83%E3%82%AF%E3%83%9C%E3%83%88%E3%83%AB/dp/B00GXZ2YL4/ref=sr_1_11?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=YEWVFTVL5D71&dib=eyJ2IjoiMSJ9.D12ob_QktLdfgb0JRC8oYtw3iUyyHLlPEakDUIqPB_lVUS2sE1VQBCz2QHkCegYmfgrXxoWM9d3ApiN5gGK7WmEUrtKMfm722mHmrpXPCb0i2BRv5lIp7tA2JAL38ajU05m41x64CY-Li364dUN2WIDPv90zKCSeKI6USnbC6I1bi6lFaGl40IuCWwmxMl9Iklnx4BHpO0FHYh5Jw-WRPBvtqYIZjc6TTXmqq7MWJQtubxyBX764c87SgUqxvBCilnmv1Pd1sFjQcBvvRwpOTzddh2sTT_m_4PEbT-7h0-Q.KrdUt4vw2hvIM-RFgX3YCVcsoGN9LW_1OujkFAlbiqM&dib_tag=se&keywords=bb%E5%BC%BE%2B0.12g&qid=1787153611&s=hobby&sprefix=bb%E5%BC%BE%2B0.12g%2Chobby%2C156&sr=1-11&th=1">https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%9E%E3%83%AB%E3%82%A4-TOKYO-MARUI-0-12gBB-%E3%83%93%E3%83%83%E3%82%AF%E3%83%9C%E3%83%88%E3%83%AB/dp/B00GXZ2YL4/ref=sr_1_11?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=YEWVFTVL5D71&dib=eyJ2IjoiMSJ9.D12ob_QktLdfgb0JRC8oYtw3iUyyHLlPEakDUIqPB_lVUS2sE1VQBCz2QHkCegYmfgrXxoWM9d3ApiN5gGK7WmEUrtKMfm722mHmrpXPCb0i2BRv5lIp7tA2JAL38ajU05m41x64CY-Li364dUN2WIDPv90zKCSeKI6USnbC6I1bi6lFaGl40IuCWwmxMl9Iklnx4BHpO0FHYh5Jw-WRPBvtqYIZjc6TTXmqq7MWJQtubxyBX764c87SgUqxvBCilnmv1Pd1sFjQcBvvRwpOTzddh2sTT_m_4PEbT-7h0-Q.KrdUt4vw2hvIM-RFgX3YCVcsoGN9LW_1OujkFAlbiqM&dib_tag=se&keywords=bb%E5%BC%BE%2B0.12g&qid=1787153611&s=hobby&sprefix=bb%E5%BC%BE%2B0.12g%2Chobby%2C156&sr=1-11&th=1</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2 class="name">5678'&8'%#$7358'%&78"=!%&$%&=#!$&`~#I$%=I"&=$#&=$I%#&I円</h2>
+        <a class="link" href="https://nofileteams.com/hayato/shop">https://nofileteams.com/hayato/shop</a>
+      </article>
+    </section>
+
+    <footer>NEON SAMPLE ARCHIVE</footer>
+  </main>
+</body>
+</html>
