@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作ったモノリスト</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <style>
+    :root {
+      --bg: #020817;
+      --panel: rgba(4, 22, 48, 0.82);
+      --blue: #19a7ff;
+      --cyan: #62d9ff;
+      --text: #dff6ff;
+      --muted: #8ab7cf;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", "Yu Gothic", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(0, 145, 255, .18), transparent 38%),
+        linear-gradient(135deg, #01040b, var(--bg) 55%, #00142a);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,.018) 0,
+        rgba(255,255,255,.018) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+    }
+
+    .container {
+      width: min(900px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 72px 0 60px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      letter-spacing: .08em;
+      color: #fff;
+      text-shadow:
+        0 0 7px var(--cyan),
+        0 0 20px var(--blue),
+        0 0 45px var(--blue);
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      font-size: 1rem;
+      letter-spacing: .25em;
+      color: var(--muted);
+      text-shadow: 0 0 10px rgba(25,167,255,.7);
+    }
+
+    .list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px 26px;
+      border: 1px solid rgba(25,167,255,.65);
+      border-radius: 14px;
+      background: var(--panel);
+      box-shadow:
+        0 0 8px rgba(25,167,255,.35),
+        inset 0 0 24px rgba(25,167,255,.05);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cyan);
+      box-shadow:
+        0 0 14px rgba(25,167,255,.65),
+        0 0 35px rgba(25,167,255,.22),
+        inset 0 0 24px rgba(25,167,255,.08);
+    }
+
+    .name {
+      margin: 0 0 13px;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 9px rgba(98,217,255,.7);
+    }
+
+    .link {
+      display: inline-block;
+      color: var(--cyan);
+      text-decoration: none;
+      word-break: break-all;
+      text-shadow: 0 0 8px rgba(25,167,255,.7);
+    }
+
+    .link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .readme {
+      margin-top: 10px;
+    }
+
+    .readme-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    footer {
+      margin-top: 38px;
+      text-align: center;
+      color: #53788d;
+      font-size: .8rem;
+      letter-spacing: .12em;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding-top: 48px; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>作ったモノリスト</h1>
+      <p class="subtitle">3つ</p>
+      <p class="subtitle">※全部上からみてけよみてけよ～</p>
+    </header>
+
+    <section class="list">
+
+      <article class="card">
+        <h2 class="name">やっと完成した自由研究</h2>
+        <a class="link" href="https://nofileteams.com/hayato">https://nofileteams.com/hayato</a>
+      </article>
+
+      <article class="card">
+        <h2 class="name">今どれか一つでも良いから夏休みの間ホシイモノ</h2>
+        <a class="link" href="https://nofileteams.com/hayato/list">https://nofileteams.com/hayato/list</a>
+      </article>
+
+      <article class="card">
+        <h2 class="name">暇な時に作ったサイト</h2>
+        <a class="link" href="https://nofileteams.com/option/high-grade-shijimi-soup–surstromming-flavo">https://nofileteams.com/option/high-grade-shijimi-soup–surstromming-flavo</a>
+      </article>
+
+    </section>
+
+    <footer>NEON SAMPLE ARCHIVE</footer>
+  </main>
+</body>
+</html>
